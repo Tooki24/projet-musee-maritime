@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import NavbarView from "./features/composent/NavbarView";
-import BannerHome from "./features/composent/BannerHome";
-import Home from "./features/composent/Home";
-import ListNavires from "./features/composent/navire/ListNavires";
+import HomePage from "./features/page/HomePage";
+import NaviresListPage from "./features/page/NaviresListPage";
+import GalleryPage from "./features/page/GalleryPage";
+
 import {
     BrowserRouter as Router,
     Routes,
     Route,
 } from 'react-router-dom';
-import GalleryNavires from "./features/composent/navire/GalleryNavires";
+
 
 
 class App extends Component {
@@ -16,13 +17,12 @@ class App extends Component {
         return (
             <Router>
                 <div className="App">
-                    <BannerHome/>
                     <NavbarView/>
                 </div>
                 <Routes>
-                    <Route path="/" exact element={<Home/>}/>
-                    <Route path="/navires" exact element={<ListNavires/>}/>
-                    <Route path="/gallery" exact element={<GalleryNavires/>}/>
+                    <Route path="/" exact element={<HomePage/>}/>
+                    <Route path="/navires" exact element={<NaviresListPage/>}/>
+                    <Route path="/gallery" exact element={<GalleryPage/>}/>
                 </Routes>
 
             </Router>

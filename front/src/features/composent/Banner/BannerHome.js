@@ -1,7 +1,8 @@
 import React from 'react';
-import '../../assets/style/BannerHome.css'
-import logo from '../../assets/img/logo/logo.png';
-import museeMaritime from '../../assets/img/museeMaritime.jpeg'
+import '../../../assets/style/Banner.css'
+import logo from '../../../assets/img/logo/logo.png';
+import museeMaritime from '../../../assets/img/museeMaritime.jpeg'
+import FilArian from "./FilArian";
 
 const BannerHome = () => {
     return (
@@ -12,9 +13,7 @@ const BannerHome = () => {
             </div>
             <div class="secondaryHeader">
                 <img src={museeMaritime}/>
-                <div>
-                    <h1>Bassin à flot histoire et témoignages</h1>
-                </div>
+                <FilArian title={'Bassin à flot histoire et témoignages'}/>
             </div>
         </header>
         </>
