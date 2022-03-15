@@ -1,14 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import NavbarView from "./features/composent/NavbarView";
+import BannerHome from "./features/composent/BannerHome";
+import Home from "./features/composent/Home";
+import ListNavires from "./features/composent/navire/ListNavires";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+} from 'react-router-dom';
+import GalleryNavires from "./features/composent/navire/GalleryNavires";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
-  );
+
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div className="App">
+                    <BannerHome/>
+                    <NavbarView/>
+                </div>
+                <Routes>
+                    <Route path="/" exact element={<Home/>}/>
+                    <Route path="/navires" exact element={<ListNavires/>}/>
+                    <Route path="/gallery" exact element={<GalleryNavires/>}/>
+                </Routes>
+
+            </Router>
+
+        );
+    }
 }
 
 export default App;

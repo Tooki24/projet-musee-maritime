@@ -1,0 +1,42 @@
+.bannerHome{
+    margin: 0;
+    padding: 0;
+}
+.bannerHome .primaryHeader{
+    height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1C658C;
+}
+.bannerHome .primaryHeader img{
+    width: 4em
+}
+
+.bannerHome .secondaryHeader img{
+    width: 100%;
+}
+.bannerHome .secondaryHeader div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 0;
+    height: 4vh;
+    background-color: #EEEE;
+}
+.bannerHome .secondaryHeader div h1{
+    text-align: center;
+    margin:0;
+    font-size: 1em;
+    color: #1C658C;
+}
+@media (min-width: 800px) {
+    .bannerHome .secondaryHeader img{
+        height: 30vh;
+        width: 80%;
+    }
+    .bannerHome .secondaryHeader{
+        text-align: center;
+    }
+}
