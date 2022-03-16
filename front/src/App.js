@@ -19,6 +19,7 @@ class App extends Component {
                     <BannerHome/>
                     <NavbarView/>
                 </div>
+                <weather/>
                 <Routes>
                     <Route path="/" exact element={<Home/>}/>
                     <Route path="/navires" exact element={<ListNavires/>}/>
