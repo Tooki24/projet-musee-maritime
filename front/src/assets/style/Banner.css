@@ -28,7 +28,7 @@
 .bannerHome .secondaryHeader div h1{
     text-align: center;
     margin:0;
-    font-size: 1em;
+    font-size: 1.3em;
     color: #1C658C;
 }
 @media (min-width: 800px) {
