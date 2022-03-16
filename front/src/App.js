@@ -21,7 +21,6 @@ class App extends Component {
                 <div className="App">
                     <NavbarView/>
                 </div>
-                <weather/>
                 <Routes>
                     <Route path="/" exact element={<HomePage/>}/>
                     <Route path="/navires" exact element={<NaviresListPage/>}/>
