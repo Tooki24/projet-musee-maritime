@@ -10,6 +10,8 @@ import {
     Route,
 } from 'react-router-dom';
 
+// TODO: Pour modifier le contenu de la page d'accueil, aller dans le fichier homePage 
+// qui est dans features/composent/page/HomePage.js
 
 
 class App extends Component {
