@@ -55,14 +55,14 @@ services:
       - back-network
   react:
     build:
-      context: .
-      dockerfile: ./build/react/Dockerfile
+      context: ./front
     ports:
       - "3000:3000"
     container_name: iutlr-info-react
     stdin_open: true
     volumes:
-       - ./front:/app/front
+       - ./front:/usr/src/app/front
+       - /usr/src/app/front/node_modules
 networks:
   back-network: 
     driver: bridge

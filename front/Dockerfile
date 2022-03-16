@@ -1,10 +1,10 @@
 FROM node:16
 
-WORKDIR /app/front
+WORKDIR /usr/src/app/front
 
-#COPY package*.json ./
+COPY package*.json ./
 
-RUN npm install yarn
+
 RUN yarn install
 
 EXPOSE 3000
