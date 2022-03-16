@@ -63,7 +63,6 @@ services:
     stdin_open: true
     volumes:
        - ./front:/app/front
-       - /app/front/node_modulesss
 networks:
   back-network: 
     driver: bridge

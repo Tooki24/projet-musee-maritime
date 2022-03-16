@@ -1,0 +1,11 @@
+.listBato{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    padding: 1em;
+    flex-wrap: wrap;
+}
+
+.card{
+    margin: 0.5em;
+}
