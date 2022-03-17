@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+/* ----------------------------------------------------------------*/ 
+/* Style de la map placé sur la page d'accueil */
+
+.map-container {
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
