@@ -4,11 +4,6 @@ import HomePage from "./features/page/HomePage";
 import NaviresListPage from "./features/page/NaviresListPage";
 import GalleryPage from "./features/page/GalleryPage";
 
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 import {
     BrowserRouter as Router,
     Routes,
