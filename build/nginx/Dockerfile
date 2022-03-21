@@ -1,7 +1,7 @@
 ARG VERSION
 
 # Dev image
-FROM nginx:${VERSION}-alpine as dev
+FROM nginx:alpine as dev
 
 # Copy nginx config
 COPY ./build/nginx/default.conf /etc/nginx/conf.d/default.conf
@@ -13,3 +13,4 @@ RUN mkdir /app
 FROM dev as prod
 
 RUN rm /etc/nginx/conf.d/default.conf
+    
