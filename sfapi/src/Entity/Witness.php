@@ -6,9 +6,11 @@ use App\Repository\WitnessRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=WitnessRepository::class)
+ * @ApiResource()
  */
 class Witness
 {
@@ -23,11 +25,6 @@ class Witness
      * @ORM\Column(type="text")
      */
     private $file;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Boat::class, inversedBy="witness")
-     */
-    private $boat;
 
     /**
      * @ORM\OneToMany(targetEntity=Image::class, mappedBy="witness")
@@ -52,18 +49,6 @@ class Witness
     public function setFile(string $file): self
     {
         $this->file = $file;
-
-        return $this;
-    }
-
-    public function getBoat(): ?Boat
-    {
-        return $this->boat;
-    }
-
-    public function setBoat(?Boat $boat): self
-    {
-        $this->boat = $boat;
 
         return $this;
     }
