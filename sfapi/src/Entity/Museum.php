@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\MuseumRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=MuseumRepository::class)
+ * @ApiResource()
  */
 class Museum
 {
@@ -41,6 +45,16 @@ class Museum
      * @ORM\Column(type="time")
      */
     private $dateClosing;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Boat::class, mappedBy="museum")
+     */
+    private $boat;
+
+    public function __construct()
+    {
+        $this->boat = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +117,36 @@ class Museum
     public function setDateClosing(\DateTimeInterface $dateClosing): self
     {
         $this->dateClosing = $dateClosing;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Boat>
+     */
+    public function getBoat(): Collection
+    {
+        return $this->boat;
+    }
+
+    public function addBoat(Boat $boat): self
+    {
+        if (!$this->boat->contains($boat)) {
+            $this->boat[] = $boat;
+            $boat->setMuseum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBoat(Boat $boat): self
+    {
+        if ($this->boat->removeElement($boat)) {
+            // set the owning side to null (unless already changed)
+            if ($boat->getMuseum() === $this) {
+                $boat->setMuseum(null);
+            }
+        }
 
         return $this;
     }

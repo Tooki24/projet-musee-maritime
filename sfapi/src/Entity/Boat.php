@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BoatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -76,6 +78,33 @@ class Boat
      * @ORM\Column(type="integer")
      */
     private $latitude;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Museum::class, inversedBy="boat")
+     */
+    private $museum;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="boat")
+     */
+    private $booking;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Image::class, mappedBy="boat")
+     */
+    private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Witness::class, mappedBy="boat")
+     */
+    private $witness;
+
+    public function __construct()
+    {
+        $this->booking = new ArrayCollection();
+        $this->image = new ArrayCollection();
+        $this->witness = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -222,6 +251,108 @@ class Boat
     public function setLatitude(int $latitude): self
     {
         $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getMuseum(): ?Museum
+    {
+        return $this->museum;
+    }
+
+    public function setMuseum(?Museum $museum): self
+    {
+        $this->museum = $museum;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBooking(): Collection
+    {
+        return $this->booking;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->booking->contains($booking)) {
+            $this->booking[] = $booking;
+            $booking->setBoat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->booking->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getBoat() === $this) {
+                $booking->setBoat(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->image->contains($image)) {
+            $this->image[] = $image;
+            $image->setBoat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getBoat() === $this) {
+                $image->setBoat(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Witness>
+     */
+    public function getWitness(): Collection
+    {
+        return $this->witness;
+    }
+
+    public function addWitness(Witness $witness): self
+    {
+        if (!$this->witness->contains($witness)) {
+            $this->witness[] = $witness;
+            $witness->setBoat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWitness(Witness $witness): self
+    {
+        if ($this->witness->removeElement($witness)) {
+            // set the owning side to null (unless already changed)
+            if ($witness->getBoat() === $this) {
+                $witness->setBoat(null);
+            }
+        }
 
         return $this;
     }

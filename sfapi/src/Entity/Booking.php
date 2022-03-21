@@ -42,6 +42,11 @@ class Booking
      */
     private $startDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Boat::class, inversedBy="booking")
+     */
+    private $boat;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Booking
     public function setStartDate(\DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getBoat(): ?Boat
+    {
+        return $this->boat;
+    }
+
+    public function setBoat(?Boat $boat): self
+    {
+        $this->boat = $boat;
 
         return $this;
     }
