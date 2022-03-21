@@ -1,21 +1,46 @@
 import React from 'react';
-import {ImageList, ImageListItem} from "@mui/material";
+import {ImageList, ImageListItem, Modal, Box} from "@mui/material";
 
 
 const GalleryImage = () => {
+
+    const [open, setOpen] = React.useState(false);
+    const [img, setImg] = React.useState(null);
+    const handleOpen = (key) => {
+        setOpen(true);
+        setImg(key);
+    }
+    const handleClose = () => setOpen(false);
+
     return (
+        <>
         <ImageList sx={{bgcolor: '#282c34', mt: 0, pb:15}} cols={3} rowHeight={164}>
-            {itemData.map((item) => (
-                <ImageListItem key={item.img}>
-                    <img
-                        src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                        srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                        alt={item.title}
-                        loading="lazy"
-                    />
-                </ImageListItem>
-            ))}
+            {
+                itemData.map((item) => (
+
+                    <ImageListItem key={item.img} onClick={() => {handleOpen(item.img)}}>
+                        <img
+                            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+                            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                            alt={item.title}
+                            loading="lazy"
+                        />
+                    </ImageListItem>
+                ))
+            }
         </ImageList>
+
+        <Modal
+                className={'galleryModal'}
+                open={open}
+                onClose={handleClose}
+        >
+            <img src={`img}?w=300&h=300&fit=crop&auto=format`}
+                 srcSet={`${img}?w=300&h=300&fit=crop&auto=format&dpr=2 2x`}
+                 loading="lazy"
+            />
+        </Modal>
+        </>
     );
 };
 
