@@ -6,7 +6,6 @@ import {Outlet} from "react-router-dom";
 const NaviresPage = () => {
     return (
         <div>
-            <BannerOtherPage title={"Liste de navires"}/>
             <Outlet/>
         </div>
     );

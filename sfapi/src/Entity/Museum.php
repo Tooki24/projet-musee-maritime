@@ -7,10 +7,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=MuseumRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get", "post"},
+ *     itemOperations={"get"},
+ *     normalizationContext={"groups"={"museum:read", "museum:isOpen"}},
+ *     denormalizationContext={"groups"={"museum:write"}}
+ * )
  */
 class Museum
 {
@@ -23,26 +30,31 @@ class Museum
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups ({"museum:read", "museum:write"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups ({"museum:read", "museum:write"})
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=12, nullable=true)
+     * @Groups ({"museum:read", "museum:write"})
      */
     private $phoneNumber;
 
     /**
      * @ORM\Column(type="time")
+     * @Groups ({"museum:read", "museum:write"})
      */
     private $dateOpening;
 
     /**
      * @ORM\Column(type="time")
+     * @Groups ({"museum:read", "museum:write"})
      */
     private $dateClosing;
 
@@ -54,6 +66,7 @@ class Museum
     public function __construct()
     {
         $this->boat = new ArrayCollection();
+        date_default_timezone_set('Europe/Paris');
     }
 
     public function getId(): ?int
@@ -116,9 +129,21 @@ class Museum
 
     public function setDateClosing(\DateTimeInterface $dateClosing): self
     {
-        $this->dateClosing = $dateClosing;
+        $this->dateClosing = $dateClosing->format('H:i:s');
 
         return $this;
+    }
+
+    /**
+     * @Groups ({"museum:read"})
+     */
+    public function getIsOpen()
+    {
+        $dateActual = date("h:i:s");
+        if ($this->dateOpening <= $dateActual && $this->dateClosing >= $dateActual)
+            return true;
+        else
+            return false;
     }
 
     /**
