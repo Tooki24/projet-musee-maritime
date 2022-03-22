@@ -7,11 +7,11 @@ import FilArian from "./FilArian";
 const BannerHome = () => {
     return (
         <>
-        <header class="bannerHome">
-            <div class="primaryHeader">
+        <header className="bannerHome">
+            <div className="primaryHeader">
                 <img src={logo}/>
             </div>
-            <div class="secondaryHeader">
+            <div className="secondaryHeader">
                 <img src={museeMaritime}/>
                 <FilArian title={'Bassin à flot histoire et témoignages'}/>
             </div>
