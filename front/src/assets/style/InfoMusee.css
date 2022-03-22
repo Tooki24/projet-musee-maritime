@@ -3,6 +3,7 @@
     justify-content: center;
     font-weight: bold;
     color: white;
+    margin-left: 5%;
 }
 #blocOFInfoMusee{
     display: flex;
@@ -41,4 +42,5 @@
     padding-bottom: 2%;
     display: flex;
     justify-content: center;
+    margin-bottom: 13%
 }
