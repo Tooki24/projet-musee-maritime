@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,43 +6,46 @@ import Typography from '@mui/material/Typography';
 import '../../../assets/style/weather.css'
 import {useState} from "react";
 import {CardActions} from "@mui/material";
-
+import App from "../../../App";
+import ReactDOM from 'react-dom';
 
 
 const DisplayWeather = (props) => {
-    
-    const [nexttemp1, setNexttemp1] = useState(undefined);
-    const [nextweather1, setNextWeather1] = useState(undefined);
-    const [nexttemp2, setNexttemp2] = useState(undefined);
-    const [nextweather2, setNextWeather2] = useState(undefined);
 
-    const displayMore=()=>{
-        /*return(
+    const [isWeather, setIsWeather] = useState(0)
+    const [displayWeather , setDisplayWeather] = useState({display:'none'});
 
-            <p>{Math.round((props.weather[1].temp.day)-273.15)} °C</p>
-        )*/
-        console.log("displaymore")
-        setNexttemp1(Math.round((props.weather[1].temp.day)-273.15))
-        setNextWeather1("http://openweathermap.org/img/w/" + props.weather[1].weather[0].icon + ".png")
 
-        setNexttemp2(Math.round((props.weather[2].temp.day)-273.15))
-        setNextWeather2("http://openweathermap.org/img/w/" + props.weather[2].weather[0].icon + ".png")
+    const displayMore = () => {
+        console.log(displayWeather)
+
+        if (isWeather === 0) {
+            setDisplayWeather({display: 'flex'});
+            setIsWeather(1);
+
+        }
+        else {
+            setIsWeather(0)
+            setDisplayWeather({display: 'none'});
+        }
     }
 
     return (
         <div>
-            <Card sx={{ minWidth: 275 }}>
+            <Card sx={{minWidth: 275}}>
                 <CardContent id="weather-card">
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                    <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
                         Météo du jour
                     </Typography>
                     <Typography id="meteo" variant="h5" component="div">
-                        {Math.round((props.weather[0].temp.day)-273.15)} °C
+                        {Math.round((props.weather[0].temp.day) - 273.15)} °C
                         <img src={"http://openweathermap.org/img/w/" + props.weather[0].weather[0].icon + ".png"}/>
-                        {nexttemp1 !== undefined ? <span>{nexttemp1}°C</span>: <></>}
-                        {nextweather1 !== undefined ? <img src={nextweather1}/>: <></>}
-                        {nexttemp2 !== undefined ? <span>{nexttemp2}°C</span>: <></>}
-                        {nextweather2 !== undefined ? <img src={nextweather2}/>: <></>}
+
+                        <span style={displayWeather}>{Math.round((props.weather[1].temp.day) - 273.15)}°C</span>
+                        <img style={displayWeather} src={("http://openweathermap.org/img/w/" + props.weather[1].weather[0].icon + ".png")}/>
+                        <span style={displayWeather}>{Math.round((props.weather[1].temp.day) - 273.15)}°C</span>
+                        <img style={displayWeather} src={("http://openweathermap.org/img/w/" + props.weather[1].weather[0].icon + ".png")}/>
+
                     </Typography>
                 </CardContent>
                 <CardActions>
