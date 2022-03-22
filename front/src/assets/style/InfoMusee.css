@@ -1,0 +1,44 @@
+#titreInfoMusee{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+#blocOFInfoMusee{
+    display: flex;
+    justify-content: center;
+}
+#OuvertInfoMusee{
+    background-color:olivedrab;
+}
+.OFInfoMusee{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:15px;
+    width: 80%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+#FermerInfoMusee{
+    background-color:darkred;
+}
+#InfoInfoMusee{
+    color: white;
+    width: 90%;
+}
+#blocTitreInfoMusee{
+    background-color:#1C658C;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+#blocInfoInfoMusee{
+    background-color:#1C658C;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    display: flex;
+    justify-content: center;
+}
