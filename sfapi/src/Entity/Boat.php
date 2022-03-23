@@ -13,6 +13,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=BoatRepository::class)
  * @ApiResource(
+ *     collectionOperations={
+ *     "get",
+ *     "post"},
+ *     itemOperations={
+ *          "get",
+ *          "patch",
+ *          "delete"
+ *     },
+ *     shortName="navires",
+ *      normalizationContext={"groups"={"boat:read"}},
+ *     denormalizationContext={"groups"={"boat:write"}}
  *
  * )
  */
@@ -27,62 +38,73 @@ class Boat
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups ({"museum:read"})
+     * @Groups ({"boat:read", "boat:write,"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $details;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $lauchYear;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $ownerName;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $length;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups ({"boat:read"})
      */
     private $materials;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $type;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $restoration;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $nbMaxVisitor;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $isBookable;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $longitude;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups ({"boat:read", "boat:write"})
      */
     private $latitude;
 
@@ -94,6 +116,8 @@ class Boat
 
     /**
      * @ORM\OneToMany(targetEntity=Image::class, mappedBy="boat")
+     * @Groups ({"boat:read"})
+     *
      */
     private $image;
 
@@ -102,8 +126,21 @@ class Boat
      */
     private $witness;
 
-    public function __construct()
+    public function __construct($name, $details, $lauchYear, $ownerName,
+                                $length, $type, $restoration, $nbMaxVisitor,
+                                $isBookable, $latitude, $longitude)
     {
+        $this->name = $name;
+        $this->details = $details;
+        $this->lauchYear = $lauchYear;
+        $this->ownerName = $ownerName;
+        $this->length = $length;
+        $this->type = $type;
+        $this->restoration = $restoration;
+        $this->nbMaxVisitor = $nbMaxVisitor;
+        $this->isBookable = $isBookable;
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
         $this->booking = new ArrayCollection();
         $this->image = new ArrayCollection();
         $this->witness = new ArrayCollection();

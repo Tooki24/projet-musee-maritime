@@ -8,6 +8,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
+ * @ApiResource  (
+ *     collectionOperations={"post"},
+ *     itemOperations={"delete"}
+ * )
  */
 class Image
 {
@@ -22,6 +26,7 @@ class Image
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+    
 
     public function getId(): ?int
     {
