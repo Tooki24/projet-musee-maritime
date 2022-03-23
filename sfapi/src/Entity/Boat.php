@@ -86,10 +86,6 @@ class Boat
      */
     private $latitude;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Museum::class, inversedBy="boat")
-     */
-    private $museum;
 
     /**
      * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="boat")
@@ -262,17 +258,6 @@ class Boat
         return $this;
     }
 
-    public function getMuseum(): ?Museum
-    {
-        return $this->museum;
-    }
-
-    public function setMuseum(?Museum $museum): self
-    {
-        $this->museum = $museum;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Booking>
