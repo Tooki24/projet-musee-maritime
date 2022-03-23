@@ -1,7 +1,7 @@
 ARG VERSION
 
 # Dev image
-FROM php:${VERSION}-fpm-alpine AS dev
+FROM php:fpm-alpine AS dev
 
 ENV APP_ENV=dev
 WORKDIR /app
