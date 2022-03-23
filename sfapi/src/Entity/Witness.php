@@ -10,7 +10,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=WitnessRepository::class)
- * @ApiResource()
  */
 class Witness
 {

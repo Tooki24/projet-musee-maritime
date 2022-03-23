@@ -12,6 +12,7 @@ import NotFound from "./features/page/NotFound";
 import Layout from "./features/composent/Layout";
 import ListNavires from "./features/composent/navire/ListNavires";
 import DetailsNavires from "./features/composent/navire/DetailsNavires";
+import PlanningPage from "./features/page/PlanningPage";
 
 // TODO: Pour modifier le contenu de la page d'accueil, aller dans le fichier homePage 
 // qui est dans features/composent/page/HomePage.js
@@ -26,8 +27,10 @@ class App extends Component {
                         <Route index element={<HomePage/>}/>
                         <Route path={"navires"} element={<NaviresPage/>}>
                             <Route index element={<ListNavires/>}/>
-                            <Route path={":boatId"} element={<DetailsNavires/>}/>
+                            <Route path={":boatID"} element={<DetailsNavires/>}/>
+                            <Route path={"planning/:boatID"} element={<PlanningPage/>}/>
                         </Route>
+
                         <Route path={"gallery"} element={<GalleryPage/>}/>
                         <Route path={"*"} element={<NotFound/>}/>
 

@@ -8,7 +8,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=BookingRepository::class)
- * @ApiResource()
  */
 class Booking
 {

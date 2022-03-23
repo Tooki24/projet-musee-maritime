@@ -8,7 +8,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
- * @ApiResource()
  */
 class Image
 {
