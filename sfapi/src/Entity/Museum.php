@@ -14,9 +14,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass=MuseumRepository::class)
  * @ApiResource(
  *     collectionOperations={"get", "post"},
- *     itemOperations={"delete", "put"},
  *     normalizationContext={"groups"={"museum:read"}},
  *     denormalizationContext={"groups"={"museum:write"}},
+ *     itemOperations={
+            "get", "delete"
+ *     },
  * )
  */
 class Museum
@@ -48,23 +50,29 @@ class Museum
 
     /**
      * @ORM\Column(type="time")
-     * @Groups ({"museum:read", "museum:write"})
+     * @Groups ({"museum:write"})
      */
     private $dateOpening;
 
     /**
      * @ORM\Column(type="time")
-     * @Groups ({"museum:read", "museum:write"})
+     * @Groups ({"museum:write"})
      */
     private $dateClosing;
 
     /**
      * @ORM\OneToMany(targetEntity=Boat::class, mappedBy="museum")
+     * @Groups ({"museum:read"})
      */
     private $boat;
 
-    public function __construct()
+    public function __construct($name, $address, $phoneNumber, $dateOpening, $dateClosing)
     {
+        $this->name = $name;
+        $this->address = $address;
+        $this->phoneNumber = $phoneNumber;
+        $this->dateOpening = $dateOpening;
+        $this->dateClosing = $dateClosing;
         $this->boat = new ArrayCollection();
         date_default_timezone_set('Europe/Paris');
     }
