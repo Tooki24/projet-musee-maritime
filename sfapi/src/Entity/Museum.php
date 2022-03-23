@@ -14,9 +14,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass=MuseumRepository::class)
  * @ApiResource(
  *     collectionOperations={"get", "post"},
- *     itemOperations={"get"},
- *     normalizationContext={"groups"={"museum:read", "museum:isOpen"}},
- *     denormalizationContext={"groups"={"museum:write"}}
+ *     itemOperations={"delete", "put"},
+ *     normalizationContext={"groups"={"museum:read"}},
+ *     denormalizationContext={"groups"={"museum:write"}},
  * )
  */
 class Museum
