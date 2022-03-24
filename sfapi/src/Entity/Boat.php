@@ -121,6 +121,7 @@ class Boat
 
     /**
      * @ORM\OneToMany(targetEntity=Witness::class, mappedBy="boat")
+     * @Groups ("boat:read")
      */
     private $witness;
 

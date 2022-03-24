@@ -15,8 +15,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass=WitnessRepository::class)
  * @ApiResource (
  *     collectionOperations={"post"},
- *     itemOperations={"delete", "patch"},
+ *     itemOperations={"get", "delete", "patch"},
  *     shortName= "temoinages",
+ *     normalizationContext={"groups"={"witness:read"}},
  *     denormalizationContext={"groups"={"witness:write"}}
  * )
  */
@@ -30,14 +31,14 @@ class Witness
     private $id;
 
     /**
-     * @Groups ({"witness:write"})
      * @ORM\Column(type="text")
+     * @Groups ({"witness:write", "boat:read", "witness:read"})
      */
     private $file;
 
     /**
      * @ORM\ManyToOne(targetEntity=Boat::class, inversedBy="livres")
-     * @Groups ("witness:write")
+     * @Groups ("witness:write", "witness:read")
      */
     private $boat;
 
