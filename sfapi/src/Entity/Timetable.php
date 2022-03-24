@@ -5,11 +5,21 @@ namespace App\Entity;
 use App\Repository\TimetableRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 
 /**
  * @ORM\Entity(repositoryClass=TimetableRepository::class)
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get"},
+ *     itemOperations={"get", "patch"},
+ *     shortName="horaires",
+ *     normalizationContext={"groups"={"timetable:read"}},
+ *     denormalizationContext={"groups"={"timetable:write"}}
+
+ * )
+ *
  */
 class Timetable
 {
@@ -22,16 +32,19 @@ class Timetable
 
     /**
      * @ORM\Column(type="time")
+     * @Groups ({"timetable:read", "timetable:write"})
      */
     private $openingHours;
 
     /**
      * @ORM\Column(type="time")
+     * @Groups ({"timetable:read", "timetable:write"})
      */
     private $closingHours;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups ({"timetable:read", "timetable:write"})
      */
     private $day;
 

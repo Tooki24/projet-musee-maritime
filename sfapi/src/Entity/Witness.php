@@ -7,9 +7,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=WitnessRepository::class)
+ * @ApiResource (
+ *     collectionOperations={"post"},
+ *     itemOperations={"delete", "patch"},
+ *     shortName= "temoinages",
+ *     denormalizationContext={"groups"={"witness:write"}}
+ * )
  */
 class Witness
 {
@@ -21,9 +30,16 @@ class Witness
     private $id;
 
     /**
+     * @Groups ({"witness:write"})
      * @ORM\Column(type="text")
      */
     private $file;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Boat::class, inversedBy="livres")
+     * @Groups ("witness:write")
+     */
+    private $boat;
 
     /**
      * @ORM\OneToMany(targetEntity=Image::class, mappedBy="witness")
@@ -78,6 +94,21 @@ class Witness
                 $image->setWitness(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBoat() : Boat
+    {
+        return $this->boat;
+    }
+
+    public function setBoat(Boat $boat): self
+    {
+        $this->boat = $boat;
 
         return $this;
     }

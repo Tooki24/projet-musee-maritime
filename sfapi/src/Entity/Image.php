@@ -5,12 +5,18 @@ namespace App\Entity;
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
  * @ApiResource  (
- *     collectionOperations={"post"},
- *     itemOperations={"delete"}
+ *     collectionOperations={"post", "get"},
+ *     itemOperations={"get"={
+ *          "normalization_context"={"groups"={"image:read", "image:item:get"}},
+ *     }, "delete"},
+ *     normalizationContext={"groups"={"image:read"}},
+ *     denormalizationContext={"groups"={"image:write"}}
  * )
  */
 class Image
@@ -24,9 +30,24 @@ class Image
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups ({"image:read", "image:write", "boat:read"})
      */
     private $name;
-    
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups ({"image:read", "image:write", "boat:read"})
+     */
+    private $file;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Boat::class, inversedBy="livres")
+     * @Groups ({"image:write", "image:read"})
+     */
+    private $boat;
+
+
+
 
     public function getId(): ?int
     {
@@ -41,6 +62,33 @@ class Image
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getFile(): ?string
+    {
+        return $this->file;
+    }
+
+    public function setFile(string $file): self
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBoat() : Boat
+    {
+        return $this->boat;
+    }
+
+    public function setBoat(Boat $boat): self
+    {
+        $this->boat = $boat;
 
         return $this;
     }

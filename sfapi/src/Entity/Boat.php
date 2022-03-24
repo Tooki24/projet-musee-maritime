@@ -22,9 +22,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "delete"
  *     },
  *     shortName="navires",
- *      normalizationContext={"groups"={"boat:read"}},
+ *     normalizationContext={"groups"={"boat:read"}},
  *     denormalizationContext={"groups"={"boat:write"}}
- *
  * )
  */
 class Boat
@@ -38,7 +37,7 @@ class Boat
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups ({"boat:read", "boat:write,"})
+     * @Groups ({"boat:read", "boat:write", "image:read:get"})
      */
     private $name;
 
@@ -117,7 +116,6 @@ class Boat
     /**
      * @ORM\OneToMany(targetEntity=Image::class, mappedBy="boat")
      * @Groups ({"boat:read"})
-     *
      */
     private $image;
 
@@ -333,6 +331,7 @@ class Boat
     {
         return $this->image;
     }
+
 
     public function addImage(Image $image): self
     {
