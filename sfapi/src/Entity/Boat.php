@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 /**
@@ -38,6 +40,7 @@ class Boat
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups ({"boat:read", "boat:write", "image:read:get"})
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -50,18 +53,21 @@ class Boat
     /**
      * @ORM\Column(type="date")
      * @Groups ({"boat:read", "boat:write"})
+     * @Assert\NotBlank()
      */
     private $lauchYear;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups ({"boat:read", "boat:write"})
+     * @Assert\NotBlank()
      */
     private $ownerName;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups ({"boat:read", "boat:write"})
+     * @Assert\NotBlank()
      */
     private $length;
 
@@ -74,6 +80,7 @@ class Boat
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups ({"boat:read", "boat:write"})
+     * @Assert\NotBlank()
      */
     private $type;
 
@@ -86,30 +93,35 @@ class Boat
     /**
      * @ORM\Column(type="integer")
      * @Groups ({"boat:read", "boat:write"})
+     * @Assert\NotBlank()
      */
     private $nbMaxVisitor;
 
     /**
      * @ORM\Column(type="boolean")
      * @Groups ({"boat:read", "boat:write"})
+     * @Assert\NotBlank()
      */
     private $isBookable;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups ({"boat:read", "boat:write"})
+     * @Assert\NotBlank()
      */
     private $longitude;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups ({"boat:read", "boat:write"})
+     * @Assert\NotBlank()
      */
     private $latitude;
 
 
     /**
      * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="boat")
+     * @Groups ("boat:read")
      */
     private $booking;
 

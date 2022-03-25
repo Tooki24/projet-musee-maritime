@@ -5,9 +5,20 @@ namespace App\Entity;
 use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=BookingRepository::class)
+ * @ApiResource (
+ *     collectionOperations={"post", "get"},
+ *     itemOperations={"delete", "get", "patch"},
+ *     shortName="plannings",
+ *     normalizationContext={"groups"={"booking:read"}},
+ *     denormalizationContext={"groups"={"booking:write"}}
+ * )
  */
 class Booking
 {
@@ -18,33 +29,34 @@ class Booking
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $start;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $endDate;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups ("booking:read", "booking:write")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=12)
+     * @Groups ("booking:read", "booking:write")
      */
     private $phoneNumber;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups ("booking:read", "booking:write")
      */
     private $startDate;
 
     /**
+     * @ORM\Column(type="datetime")
+     * @Groups ("booking:read", "booking:write")
+     */
+    private $endDate;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Boat::class, inversedBy="booking")
+     * @Groups ("booking:read", "booking:write")
      */
     private $boat;
 
@@ -53,29 +65,6 @@ class Booking
         return $this->id;
     }
 
-    public function getStart(): ?\DateTimeInterface
-    {
-        return $this->start;
-    }
-
-    public function setStart(\DateTimeInterface $start): self
-    {
-        $this->start = $start;
-
-        return $this;
-    }
-
-    public function getEndDate(): ?\DateTimeInterface
-    {
-        return $this->endDate;
-    }
-
-    public function setEndDate(\DateTimeInterface $endDate): self
-    {
-        $this->endDate = $endDate;
-
-        return $this;
-    }
 
     public function getName(): ?string
     {
@@ -109,6 +98,18 @@ class Booking
     public function setStartDate(\DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
 
         return $this;
     }
