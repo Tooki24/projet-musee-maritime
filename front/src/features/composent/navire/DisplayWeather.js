@@ -38,12 +38,12 @@ const DisplayWeather = (props) => {
                     </Typography>
                     <Typography id="meteo" variant="h5" component="div">
                         {Math.round((props.weather[0].temp.day) - 273.15)} °C
-                        <img src={"http://openweathermap.org/img/w/" + props.weather[0].weather[0].icon + ".png"}/>
+                        <img src={"https://openweathermap.org/img/w/" + props.weather[0].weather[0].icon + ".png"}/>
 
                         <span style={displayWeather}>{Math.round((props.weather[1].temp.day) - 273.15)}°C</span>
-                        <img style={displayWeather} src={("http://openweathermap.org/img/w/" + props.weather[1].weather[0].icon + ".png")}/>
+                        <img style={displayWeather} src={("https://openweathermap.org/img/w/" + props.weather[1].weather[0].icon + ".png")}/>
                         <span style={displayWeather}>{Math.round((props.weather[1].temp.day) - 273.15)}°C</span>
-                        <img style={displayWeather} src={("http://openweathermap.org/img/w/" + props.weather[1].weather[0].icon + ".png")}/>
+                        <img style={displayWeather} src={("https://openweathermap.org/img/w/" + props.weather[1].weather[0].icon + ".png")}/>
 
                     </Typography>
                     <Button onClick={displayMore}>
