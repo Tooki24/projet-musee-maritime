@@ -6,27 +6,26 @@ import Typography from '@mui/material/Typography';
 import '../../../assets/style/weather.css'
 import {useState} from "react";
 import {CardActions} from "@mui/material";
-import App from "../../../App";
-import ReactDOM from 'react-dom';
-
-
+import ZoomOutIcon from '@mui/icons-material/ZoomOut';
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
 const DisplayWeather = (props) => {
 
     const [isWeather, setIsWeather] = useState(0)
     const [displayWeather , setDisplayWeather] = useState({display:'none'});
-
+    const [more, setMore] = useState(<ZoomInIcon/>);
 
     const displayMore = () => {
-        console.log(displayWeather)
 
         if (isWeather === 0) {
             setDisplayWeather({display: 'flex'});
             setIsWeather(1);
-
+            setMore(<ZoomOutIcon/>);
         }
         else {
             setIsWeather(0)
             setDisplayWeather({display: 'none'});
+            setMore(<ZoomInIcon/>);
+
         }
     }
 
@@ -34,7 +33,7 @@ const DisplayWeather = (props) => {
         <div>
             <Card sx={{minWidth: 275}}>
                 <CardContent id="weather-card">
-                    <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
+                    <Typography sx={{fontSize: 18, color: 'primary.contrastText'}} color="text.secondary" gutterBottom>
                         Météo du jour
                     </Typography>
                     <Typography id="meteo" variant="h5" component="div">
@@ -47,15 +46,10 @@ const DisplayWeather = (props) => {
                         <img style={displayWeather} src={("http://openweathermap.org/img/w/" + props.weather[1].weather[0].icon + ".png")}/>
 
                     </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button
-                        id="learn-button"
-                        size="small"
-                        onClick={displayMore}>
-                        Voir Plus
+                    <Button onClick={displayMore}>
+                        {more}
                     </Button>
-                </CardActions>
+                </CardContent>
             </Card>
         </div>
     );

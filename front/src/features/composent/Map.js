@@ -2,6 +2,7 @@ import React from "react";
 
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import "../../assets/style/Map.css"
 
 
 class Map extends React.Component {
@@ -39,7 +40,7 @@ class Map extends React.Component {
   }
 
   render() {
-    return <div id="mapid" style={{ height: "100vh", width: "100vw" }} />;
+    return <div id="mapid" className={"mapBoat"}  />;
   }
 }
 

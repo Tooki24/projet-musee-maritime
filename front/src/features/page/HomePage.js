@@ -6,12 +6,11 @@ import Map from "../composent/Map";
 
 const HomePage = () => {
     return (
-        <div>
+        <div className={"home"}>
             <BannerHome/>
             <GetWeather/>
             <InfoMusee/>
             <Map />
-            <h1>page</h1>
         </div>
     );
 };
