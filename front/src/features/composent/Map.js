@@ -1,28 +1,55 @@
-import React from "react";
-
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+import React, {useEffect, useState} from "react";
 import "../../assets/style/Map.css"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import L from 'leaflet';
+
 
 
 
 const Map = () => {
+    const [navires, setNavires] = useState([]);
+
+    useEffect(() =>{
+        fetch("http://localhost:8000/api/navires.json")
+            .then((res) => res.json())
+            .then(data => setNavires(data))
+            .catch(err => console.log(err));
+    }, [])
 
     // Icon sur la map
+    const icon = new L.Icon({
+        iconUrl:
+            "./map/ship.png",
+        shadowUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    console.log(navires);
 
   return (
       <>
-          <MapContainer center={[51.505, -0.09]} zoom={13}>
+          <MapContainer center={[46.150212513518395, -1.1514638053383475]} zoom={7} className={"mapBoat"}>
               <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker position={[51.505, -0.09]}>
-                  <Popup>
-                      A pretty CSS3 popup. <br /> Easily customizable.
-                  </Popup>
-              </Marker>
+              {
+                  //console.log(navire.longitude);
+                  navires.map((navire) => {
+                      console.log(navire.latitude);
+                      return(
+                          <Marker position={[navire.longitude, navire.latitude]} icon={icon}>
+                              <Popup>
+                                  {navire.name}
+                              </Popup>
+                          </Marker>
+                      );
+                  })
+              }
+
           </MapContainer>
       </>
   );
