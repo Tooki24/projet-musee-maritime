@@ -1,20 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import '../../../assets/style/InfoMusee.css'
 const InfoMusee = () => {
+    let tab_jour = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
     let date = new Date();
     let heure = date.getHours()+":"+date.getMinutes();
 
-    const [dates, setDate] = useState(new Date());
+    const [dates, setDate] = useState([]);
+
     useEffect( () => {
-        fetch("http://localhost:8000/api/horaires")
+        fetch("http://localhost:8000/api/horaires.json")
             .then(response => response.json())
             .then(data => setDate(data))
             .catch(err => console.log(err));
-    }, [])
+    }, []);
+    let dateOpen = new Date();
+    let dateClose = new Date();
 
-    console.log(dates);
-    let dateOpen = new Date(dates.openingHours);
-    let dateClose = new Date(dates.closingHours);
+    dates.forEach(ele => {
+        if(tab_jour[date.getDay()] === ele.day)
+        {
+            dateOpen = new Date(ele.openingHours)
+            dateClose = new Date(ele.closingHours)
+        }
+    })
 
     return (
         <>
@@ -22,9 +30,9 @@ const InfoMusee = () => {
             <h1 id="titreInfoMusee"> Le Musée maritime de La Rochelle</h1>
             </div>
             <div id="blocOFInfoMusee">
-            {
-                date.getHours()<dateClose.getHours() && date.getHours()>=dateOpen.getHours() ? <p id ="OuvertInfoMusee" className="OFInfoMusee">ouvert</p>:<p id="FermerInfoMusee" class="OFInfoMusee">fermer</p>
-            }
+                {
+                    date.getHours()<dateClose.getHours() && date.getHours()>=dateOpen.getHours() ? <p id ="OuvertInfoMusee" className="OFInfoMusee">ouvert</p>:<p id="FermerInfoMusee" className="OFInfoMusee">fermer</p>
+                }
             </div>
             <div id ="blocInfoInfoMusee">
             <p id="InfoInfoMusee">Le Musée maritime de La Rochelle rassemble, restaure et entretient une
