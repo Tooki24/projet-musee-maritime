@@ -6,8 +6,6 @@ const GetWeather = () => {
     const [weather, setWeather] = useState([]);
 
     useEffect(() => {
-        let temp = 0
-        let weather = 0
 
         fetch("https://api.openweathermap.org/data/2.5/onecall?lat=46.160329&lon=-1.151139&exclude=minutely-hourly&appid=aa506f8f976137bd80c5da1deca545af")
             .then((res) => res.json())

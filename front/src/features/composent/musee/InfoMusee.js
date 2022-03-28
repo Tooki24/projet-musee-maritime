@@ -4,7 +4,6 @@ import '../../../assets/style/InfoMusee.css'
 const InfoMusee = () => {
     let tab_jour = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
     let date = new Date();
-    let heure = date.getHours()+":"+date.getMinutes();
 
     const [dates, setDate] = useState([]);
 

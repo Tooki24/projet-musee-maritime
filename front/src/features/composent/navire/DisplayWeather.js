@@ -1,11 +1,9 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import '../../../assets/style/weather.css'
-import {useState} from "react";
-import {CardActions} from "@mui/material";
+import React, {useState} from 'react';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 const DisplayWeather = (props) => {

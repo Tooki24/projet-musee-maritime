@@ -28,8 +28,6 @@ const Map = () => {
         shadowSize: [41, 41]
     });
 
-    console.log(navires);
-
   return (
       <>
           <MapContainer center={[46.150212513518395, -1.1514638053383475]} zoom={7} className={"mapBoat"}>
@@ -37,9 +35,7 @@ const Map = () => {
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               {
-                  //console.log(navire.longitude);
                   navires.map((navire) => {
-                      console.log(navire.latitude);
                       return(
                           <Marker position={[navire.longitude, navire.latitude]} icon={icon}>
                               <Popup>
