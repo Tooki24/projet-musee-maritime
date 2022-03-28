@@ -65,7 +65,7 @@ class Boat
     private $ownerName;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      * @Groups ({"boat:read", "boat:write"})
      * @Assert\NotBlank()
      */
@@ -105,14 +105,14 @@ class Boat
     private $isBookable;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      * @Groups ({"boat:read", "boat:write"})
      * @Assert\NotBlank()
      */
     private $longitude;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      * @Groups ({"boat:read", "boat:write"})
      * @Assert\NotBlank()
      */
@@ -209,12 +209,12 @@ class Boat
         return $this;
     }
 
-    public function getLength(): ?int
+    public function getLength(): ?float
     {
         return $this->length;
     }
 
-    public function setLength(int $length): self
+    public function setLength(float $length): self
     {
         $this->length = $length;
 
@@ -281,24 +281,24 @@ class Boat
         return $this;
     }
 
-    public function getLongitude(): ?int
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
-    public function setLongitude(int $longitude): self
+    public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;
 
         return $this;
     }
 
-    public function getLatitude(): ?int
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
-    public function setLatitude(int $latitude): self
+    public function setLatitude(float $latitude): self
     {
         $this->latitude = $latitude;
 

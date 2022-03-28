@@ -1,47 +1,61 @@
-import React from "react";
-
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+import React, {useEffect, useState} from "react";
 import "../../assets/style/Map.css"
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import L from 'leaflet';
 
 
-class Map extends React.Component {
-  componentDidMount() {
-    const mymap = L.map("mapid").setView([46.15021251351839, -1.1514638053383475], 17);
 
-    const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-    L.tileLayer(url).addTo(mymap);
+const Map = () => {
+    const [navires, setNavires] = useState([]);
 
- 
+    useEffect(() =>{
+        fetch("http://localhost:8000/api/navires.json")
+            .then((res) => res.json())
+            .then(data => setNavires(data))
+            .catch(err => console.log(err));
+    }, [])
+
+    // Icon sur la map
     const icon = new L.Icon({
-      iconUrl:
-        "./map/ship.png",
-      shadowUrl:
-        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
+        iconUrl:
+            "./map/ship.png",
+        shadowUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
     });
 
-    const marker = L.marker([46.15021251351839, -1.1514638053383475], { icon: icon }).addTo(
-      mymap
-    );
+    console.log(navires);
 
-    marker.bindPopup("<b>Je suis une popup.").openPopup();
+  return (
+      <>
+          <MapContainer center={[46.150212513518395, -1.1514638053383475]} zoom={7} className={"mapBoat"}>
+              <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {
+                  //console.log(navire.longitude);
+                  navires.map((navire) => {
+                      console.log(navire.latitude);
+                      return(
+                          <Marker position={[navire.longitude, navire.latitude]} icon={icon}>
+                              <Popup>
+                                  {navire.name}
+                              </Popup>
+                          </Marker>
+                      );
+                  })
+              }
 
-    L.circle([25.03418, 121.564517], {
-      color: "red",
-      fillColor: "#f03",
-      fillOpacity: 0.5,
-      radius: 10
-    }).addTo(mymap);
-  }
+          </MapContainer>
+      </>
+  );
+};
 
-  render() {
-    return <div id="mapid" className={"mapBoat"}  />;
-  }
-}
 
 export default Map;
+
+
