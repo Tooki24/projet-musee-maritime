@@ -8,77 +8,38 @@ import Typography from '@mui/material/Typography';
 import "../../../assets/style/ListNavires.css"
 import {Link} from "react-router-dom";
 import BannerOtherPage from "../Banner/BannerOtherPage";
+import NavireCard from "./NavireCard";
+import {useEffect, useState} from "react";
+import navireCard from "./NavireCard";
 
 const ListNavires = () => {
 
-    let id = 12;
+    const [navires, setNavires] = useState([]);
+
+    useEffect(() => {
+
+        fetch("http://localhost:8000/api/navires.json", {method: "GET"})
+            .then((res) => res.json())
+            .then((value) => {
+                setNavires(value);
+
+            })
+            .catch((error) => {
+                error.log(error)
+            })
+    }, []);
 
     return (
         <>
             <BannerOtherPage title={"Liste de navires"}/>
             <div className="listBato">
-                <Card className="card" sx={{maxWidth: 345}}>
-                    <CardMedia
-                        component="img"
-                        alt="green iguana"
-                        height="140"
-                        image="./Bato/bato.jpg"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Nom Bato
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            ici description du bato. This stigma has only been raised by a virtual queen.
-
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button className="lienCard" size="small" component={Link} to={"/navires/"+id} >Voir le detail du navire</Button>
-                    </CardActions>
-                </Card>
-
-                <Card className="card" sx={{maxWidth: 345}}>
-                    <CardMedia
-                        component="img"
-                        alt="green iguana"
-                        height="140"
-                        image="./Bato/bato.jpg"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Nom Bato
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            ici description du bato. This stigma has only been raised by a virtual queen.
-
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button className="lienCard" size="small" component={Link} to={"/navires/"+id}>Voir le detail du navire</Button>
-                    </CardActions>
-                </Card>
-
-                <Card className="card" sx={{maxWidth: 345}}>
-                    <CardMedia
-                        component="img"
-                        alt="green iguana"
-                        height="140"
-                        image="./Bato/bato.jpg"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Nom Bato
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            ici description du bato. This stigma has only been raised by a virtual queen.
-
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button className="lienCard" size="small" component={Link} to={"/navires/"+id}>Voir le detail du navire</Button>
-                    </CardActions>
-                </Card>
+                {
+                    navires.map((navire) => {
+                        return (
+                            <NavireCard navire={navire}/>
+                        )
+                    })
+                }
             </div>
         </>
     );

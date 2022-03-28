@@ -121,7 +121,6 @@ class Boat
 
     /**
      * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="boat")
-     * @Groups ("boat:read")
      */
     private $booking;
 
