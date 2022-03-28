@@ -12,12 +12,17 @@ const NavireCard = (props) => {
         <div>
 
             <Card className="card" sx={{maxWidth: 345}}>
-                <CardMedia
-                    component="img"
-                    alt={props.navire.image[0].name}
-                    height="140"
-                    image={"./Bato/" + props.navire.image[0].file}
-                />
+                {
+                    props.navire.image.length !== 0 ? (
+                        <CardMedia
+                            component="img"
+                            alt={props.navire.image[0].name}
+                            height="140"
+                            image={"./Bato/" + props.navire.image[0].file}
+                        />
+                    ) : null
+                }
+
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {props.navire.name}
