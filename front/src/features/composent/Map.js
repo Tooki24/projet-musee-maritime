@@ -29,6 +29,7 @@ class Map extends React.Component {
       mymap
     );
 
+
     marker.bindPopup("<b>Je suis une popup.").openPopup();
 
     L.circle([25.03418, 121.564517], {

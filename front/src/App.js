@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import NavbarView from "./features/composent/NavbarView";
 import HomePage from "./features/page/HomePage";
-import NaviresPage from "./features/page/NaviresPage";
 import GalleryPage from "./features/page/GalleryPage";
 import {
     BrowserRouter as Router,
@@ -13,6 +12,7 @@ import Layout from "./features/composent/Layout";
 import ListNavires from "./features/composent/navire/ListNavires";
 import DetailsNavires from "./features/composent/navire/DetailsNavires";
 import PlanningPage from "./features/page/PlanningPage";
+import NaviresPage from "./features/page/NaviresPage";
 
 // TODO: Pour modifier le contenu de la page d'accueil, aller dans le fichier homePage 
 // qui est dans features/composent/page/HomePage.js
