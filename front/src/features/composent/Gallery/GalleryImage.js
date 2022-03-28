@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageList, ImageListItem, Modal, Box} from "@mui/material";
+import {ImageList, ImageListItem, Modal} from "@mui/material";
 
 
 const GalleryImage = () => {
