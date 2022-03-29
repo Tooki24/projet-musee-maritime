@@ -27,7 +27,7 @@ const ListNavires = () => {
                 {
                     navires.map((navire) => {
                         return (
-                            <NavireCard navire={navire}/>
+                            <NavireœCard navire={navire}/>
                         )
                     })
                 }

@@ -60,6 +60,11 @@ class Booking
      */
     private $boat;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbPerson;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +127,18 @@ class Booking
     public function setBoat(?Boat $boat): self
     {
         $this->boat = $boat;
+
+        return $this;
+    }
+
+    public function getNbPerson(): ?int
+    {
+        return $this->nbPerson;
+    }
+
+    public function setNbPerson(int $nbPerson): self
+    {
+        $this->nbPerson = $nbPerson;
 
         return $this;
     }
