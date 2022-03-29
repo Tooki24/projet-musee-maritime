@@ -62,6 +62,7 @@ class Booking
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups ("booking:read", "booking:write")
      */
     private $nbPerson;
 
