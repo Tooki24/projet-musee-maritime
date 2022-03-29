@@ -1,0 +1,24 @@
+#bateauNom {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.infoBateau {
+    margin: 10px 10px;
+    display:flex;
+    flex-direction: column;
+}
+
+.imgBateau {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5em;
+}
+
+#bouttonBateau{
+    margin: 10px 50px;
+    display:flex;
+    align-items: center;
+}

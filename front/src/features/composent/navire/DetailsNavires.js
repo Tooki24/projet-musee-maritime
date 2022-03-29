@@ -3,6 +3,8 @@ import {Link, useParams} from 'react-router-dom';
 import BannerOtherPage from "../Banner/BannerOtherPage";
 import Button from "@mui/material/Button";
 
+import '../../../assets/style/detailsNavires.css'
+
 const DetailsNavires = (props) => {
     const params = useParams();
     const [navire, setNavire] = useState([]);
@@ -24,22 +26,25 @@ const DetailsNavires = (props) => {
     return (
         <>
             <BannerOtherPage title={"Detail du Navires"}/>
-            <h1>{navire.name}</h1>
-            <p>{navire.details}</p>
-            <p>le proprietaire : {navire.ownerName}</p>
-            <p>Année de mise a l'eau : {navire.lauchYear}</p>
-            <p>Année de restoration {navire.restoration}</p>
-            <p>Longueur : {navire.length}</p>
-            <p>Materiaux :{navire.material}</p>
-            <p>Type de bateau : {navire.type}</p>
+            <h1 id="bateauNom">{navire.name}</h1>
+            <div class="infoBateau">
+                <p>{navire.details}</p>
+                <p>le proprietaire : {navire.ownerName}</p>
+                <p>Année de mise a l'eau : {navire.lauchYear}</p>
+                <p>Année de restoration {navire.restoration}</p>
+                <p>Longueur : {navire.length}</p>
+                <p>Materiaux :{navire.material}</p>
+                <p>Type de bateau : {navire.type}</p>
+            </div>
+
             {navire.isBookable === true ?
-                <Button sx={{bgcolor: 'secondary.main'}} component={Link}
+                <Button id="bouttonBateau" sx={{bgcolor: 'secondary.main'}} component={Link}
                         to={"/navires/planning/" + params.boatID}>Planning</Button>
                 : <p>Ce bateau n'est pas disponible a la reservetion </p>}
             {
                 navire.image ? (
                     navire.image.map((image, index) => {
-                        return <img key={index} src={"http://localhost:3000/img/gallery/navires/" + image.file}
+                        return <img class="imgBateau" key={index} src={"http://localhost:3000/img/gallery/navires/" + image.file}
                                     alt={image.name}/>
                     })
                 ) : null
