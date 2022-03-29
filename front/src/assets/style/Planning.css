@@ -1,0 +1,31 @@
+.pagePlanning{
+    background: rgba(28, 101, 140, 0.55);
+}
+
+.infoNavire{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.infoNavire h1{
+    margin-bottom: 1em;
+}
+
+.infoNavire img{
+    width: 60%;
+    border-radius: 10%;
+    box-shadow: #1C658C 2px 2px;
+}
+.infoNavire p span{
+    font-weight: bold;
+}
+
+.crenelBoat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
