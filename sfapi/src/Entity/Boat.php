@@ -33,6 +33,7 @@ class Boat
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
+     * @Groups ({"boat:read"})
      * @ORM\Column(type="integer")
      */
     private $id;
