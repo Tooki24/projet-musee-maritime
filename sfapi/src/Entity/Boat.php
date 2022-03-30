@@ -49,6 +49,11 @@ class Boat
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups ({"boat:read", "boat:write"})
+     * @Assert\Length(
+     *     min = 10,
+     *     max = 2000,
+     *     maxMessage ="La Bio ne doit pas dépasser 2000 car"
+     * )
      */
     private $details;
 

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import "../../assets/style/Map.css"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
+import {Link} from "react-router-dom";
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 
 
@@ -39,7 +41,8 @@ const Map = () => {
                       return(
                           <Marker key={navire.name} position={[navire.longitude, navire.latitude]} icon={icon}>
                               <Popup>
-                                  {navire.name}
+                                  <h3>{navire.name}</h3>
+                                  <Link to={"/navires/"+navire.id}><OpenInNewIcon/></Link>
                               </Popup>
                           </Marker>
                       );
