@@ -2,7 +2,7 @@ FROM node:16
 
 WORKDIR /app/front
 
-COPY ./front/package*.json ./
+COPY ./front/package.json ./
 
 RUN npm install
 

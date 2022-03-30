@@ -52,7 +52,7 @@ class Boat
      * @Assert\Length(
      *     min = 10,
      *     max = 2000,
-     *     maxMessage ="La Bio ne doit pas dépasser 2000 car"
+     *     maxMessage ="Le details ne doit pas dépasser 2000 car"
      * )
      */
     private $details;
