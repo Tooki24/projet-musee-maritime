@@ -37,7 +37,7 @@ const Map = () => {
               {
                   navires.map((navire) => {
                       return(
-                          <Marker position={[navire.longitude, navire.latitude]} icon={icon}>
+                          <Marker key={navire.name} position={[navire.longitude, navire.latitude]} icon={icon}>
                               <Popup>
                                   {navire.name}
                               </Popup>

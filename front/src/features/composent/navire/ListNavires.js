@@ -27,7 +27,7 @@ const ListNavires = () => {
                 {
                     navires.map((navire) => {
                         return (
-                            <NavireœCard navire={navire}/>
+                            <NavireCard key={navire.name} navire={navire}/>
                         )
                     })
                 }

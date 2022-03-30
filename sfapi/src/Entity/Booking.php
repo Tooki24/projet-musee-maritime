@@ -32,38 +32,47 @@ class Booking
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups ("booking:read", "booking:write")
+     * @Groups ({"booking:read", "booking:write"})
+     * @Assert\NotBlank()
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=12)
-     * @Groups ("booking:read", "booking:write")
+     * @Groups ({"booking:read", "booking:write"})
+     * @Assert\NotBlank()
      */
     private $phoneNumber;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups ("booking:read", "booking:write")
+     * @Groups ({"booking:read", "booking:write"})
+     * @Assert\NotBlank()
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups ("booking:read", "booking:write")
+     * @Groups ({"booking:read", "booking:write"})
+     * @Assert\NotBlank()
      */
     private $endDate;
 
     /**
+     * @ORM\Column(type="integer")
+     * @Groups ({"booking:read", "booking:write"})
+     * @Assert\NotBlank()
+     */
+    private $nbPerson;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Boat::class, inversedBy="booking")
-     * @Groups ("booking:read", "booking:write")
+     * @Groups ({"booking:read", "booking:write"})
+     * @Assert\NotBlank()
      */
     private $boat;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $nbPerson;
+
 
     public function getId(): ?int
     {

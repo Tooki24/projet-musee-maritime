@@ -18,7 +18,7 @@ const NavireCard = (props) => {
                             component="img"
                             alt={props.navire.image[0].name}
                             height="140"
-                            image={"./img/gallery/navires/" + props.navire.image[0].file}
+                            image={process.env.PUBLIC_URL+"/img/" + props.navire.image[0].file}
                         />
                     ) : null
                 }

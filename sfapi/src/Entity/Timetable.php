@@ -6,6 +6,8 @@ use App\Repository\TimetableRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 
@@ -33,18 +35,21 @@ class Timetable
     /**
      * @ORM\Column(type="time")
      * @Groups ({"timetable:read", "timetable:write"})
+     * @Assert\NotBlank()
      */
     private $openingHours;
 
     /**
      * @ORM\Column(type="time")
      * @Groups ({"timetable:read", "timetable:write"})
+     * @Assert\NotBlank()
      */
     private $closingHours;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups ({"timetable:read", "timetable:write"})
+     * @Assert\NotBlank()
      */
     private $day;
 

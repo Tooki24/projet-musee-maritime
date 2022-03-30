@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 
@@ -33,12 +35,14 @@ class Witness
     /**
      * @ORM\Column(type="text")
      * @Groups ({"witness:write", "boat:read", "witness:read"})
+     * @Assert\NotBlank()
      */
     private $file;
 
     /**
      * @ORM\ManyToOne(targetEntity=Boat::class, inversedBy="livres")
      * @Groups ("witness:write", "witness:read")
+     * @Assert\NotBlank()
      */
     private $boat;
 

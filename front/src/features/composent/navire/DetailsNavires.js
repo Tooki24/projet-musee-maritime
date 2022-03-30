@@ -14,7 +14,6 @@ const DetailsNavires = (props) => {
                 .then((res) => res.json())
                 .then((value) => {
                     setNavire(value);
-                    console.log(value);
                 })
                 .catch((error) => {
                     error.log(error)
@@ -27,13 +26,13 @@ const DetailsNavires = (props) => {
         <>
             <BannerOtherPage title={"Detail du Navires"}/>
             <h1 id="bateauNom">{navire.name}</h1>
-            <div class="infoBateau">
+            <div className="infoBateau">
                 <p>{navire.details}</p>
                 <p>le proprietaire : {navire.ownerName}</p>
                 <p>Année de mise a l'eau : {navire.lauchYear}</p>
                 <p>Année de restoration {navire.restoration}</p>
                 <p>Longueur : {navire.length}</p>
-                <p>Materiaux :{navire.material}</p>
+                <p>Materiaux : {navire.materials}</p>
                 <p>Type de bateau : {navire.type}</p>
             </div>
 
@@ -44,7 +43,7 @@ const DetailsNavires = (props) => {
             {
                 navire.image ? (
                     navire.image.map((image, index) => {
-                        return <img class="imgBateau" key={index} src={"http://localhost:3000/img/gallery/navires/" + image.file}
+                        return <img className="imgBateau" key={index} src={process.env.PUBLIC_URL+"/img/" + image.file}
                                     alt={image.name}/>
                     })
                 ) : null
